@@ -26,3 +26,5 @@ User.findAll({
 //! UPDATE
 
 //! DELETE
+
+module.exports = router;

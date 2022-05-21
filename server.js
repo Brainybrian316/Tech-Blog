@@ -1,8 +1,10 @@
 //  Modules are imported/exported
-const path = require('path');
 const express = require('express');
+// const routes = require('./controllers');
+// const path = require('path');
 // const session = require(express-session);
 // const exphbs = require('express-handlebars');
+const sequelize = require('./config/connection');
 
 //  initial variables are declared for use in the server.js file
 const app = express();
@@ -13,7 +15,6 @@ const PORT = process.env.PORT || 3001;
 // const hbs = exphbs.create({ helpers});
 
 // Middleware
-const sequelize = require('./config/connection');
 // const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 //  set up session with cookies and sequelize
@@ -34,13 +35,13 @@ app.use(express.json());
 // use express.urlencoded to parse urlencoded
 app.use(express.urlencoded({ extended: true }));
 // serve static files from public folder
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 // //  use handlebars
 // app.engine('handlebars', hbs.engine);
 // // set handlebars as the default engine
 // app.set('view engine', 'handlebars');
 // set up routes and controllers
-app.use(require('./controllers/'));
+// app.use(routes);
 
 // turn on  connection to db and server
 sequelize.sync({ force: false }).then(() => {
