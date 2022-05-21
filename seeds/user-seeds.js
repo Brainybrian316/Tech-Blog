@@ -1,5 +1,5 @@
 //  Module
-const { User } = require('../models/user');
+const User  = require('../models/User');
 
 // variable to hold all the users
 const userData = [
@@ -10,21 +10,21 @@ const userData = [
         // email = the email of the user they create in the sign up form
         email: 'johndoe@tmail.com',
         //  password = the password of the user they create in the sign up form
-        password: 'password1'
+        password: 'Password1!'
     },
     {
         username: 'sally_smith',
         email: 'sallysmith@tmail.com',
-        password: 'password2'
+        password: 'Password2@'
     },
     {
         username: 'spongebob',
         email: 'spongebob@tmail.com',
-        password: 'password3'
+        password: 'Password'
     }
 ]
 
 // function to seed the users table with the data in the userData array
-const seedUsers = () => User.bulkCreate(userData);
+const seedUsers = () => User.bulkCreate(userData, {individualHooks: true});
 
 module.exports = seedUsers;
