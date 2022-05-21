@@ -39,8 +39,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.engine('handlebars', hbs.engine);
 // // set handlebars as the default engine
 // app.set('view engine', 'handlebars');
-// // set up routes and controllers
-// app.use(require('./controllers/'));
+// set up routes and controllers
+app.use(require('./controllers/'));
 
 // turn on  connection to db and server
 sequelize.sync({ force: false }).then(() => {
