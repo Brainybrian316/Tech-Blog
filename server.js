@@ -2,7 +2,7 @@
 const path = require('path');
 const express = require('express');
 // const session = require(express-session);
-const exphbs = require('express-handlebars');
+// const exphbs = require('express-handlebars');
 
 //  initial variables are declared for use in the server.js file
 const app = express();
@@ -35,12 +35,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
-//  use handlebars
-app.engine('handlebars', hbs.engine);
-// set handlebars as the default engine
-app.set('view engine', 'handlebars');
-// set up routes and controllers
-app.use(require('./controllers/'));
+// //  use handlebars
+// app.engine('handlebars', hbs.engine);
+// // set handlebars as the default engine
+// app.set('view engine', 'handlebars');
+// // set up routes and controllers
+// app.use(require('./controllers/'));
 
 // turn on  connection to db and server
 sequelize.sync({ force: false }).then(() => {
