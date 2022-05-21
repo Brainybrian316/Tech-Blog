@@ -28,20 +28,26 @@ User.init({
     password: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-            // \d is short hand for digit...this validates that the password has Minimum eight characters, at least one letter, one number and one special character:
-            is: ["^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"]
+        validate: 
+            // // \d is short hand for digit...this validates that the password has Minimum eight characters, at least one letter, one number and one special character:
+            // is: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+        {
+            validatePassword: function(password) {
+                if(!(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password))) {
+                    throw new Error('Password must be at least 8 characters, contain at least 1 letter, 1 number, and 1 special character');
+                }
+            }
         }
-    }
+    },
 }, {
     hooks: {
-        beforeCreate: async (userData) => {
-            userData.password = await bcrypt.hash(userData.password, 10)
-            return userData;
+       async beforeCreate(newUserData) {
+            newUserData.password = await bcrypt.hash(newUserData.password, 10)
+            return newUserData;
         },
-        beforeUpdate: async (userData) => {
-            userData.password = await bcrypt.hash(userData.password, 10)
-            return userData;
+        async beforeUpdate(newUserData) {
+            newUserData.password = await bcrypt.hash(newUserData.password, 10)
+            return newUserData;
         }
     },
     // adding our database connection to our model... this is ES6 shorthand for sequelize: sequelize 
