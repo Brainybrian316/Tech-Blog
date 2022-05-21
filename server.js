@@ -42,10 +42,11 @@ app.use(express.urlencoded({ extended: true }));
 // app.set('view engine', 'handlebars');
 // set up routes and controllers
 // app.use(routes);
+app.use(require('./controllers'));
 
 // turn on  connection to db and server
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log(`Now listening at http://localhost:${PORT}`));
+    app.listen(PORT, () => console.log(`Now listening at http://localhost:${PORT}/`));
 })
 
 
