@@ -20,7 +20,7 @@ const userData = [
     {
         username: 'spongebob',
         email: 'spongebob@tmail.com',
-        password: 'Password'
+        password: 'Password3#'
     }
 ]
 
