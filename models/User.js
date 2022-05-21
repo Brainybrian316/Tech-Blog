@@ -17,7 +17,7 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    email:{
+    email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -29,28 +29,25 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            // // \d is short hand for digit...this validates that the password has Minimum eight characters, at least one letter, one number and one special character:
-            // is: ["^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"]
-            is: ["^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"]
+            // \d is short hand for digit...this validates that the password has Minimum eight characters, at least one letter, one number and one special character:
+            is: ["^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"]
         }
     }
-},
-    {
-        // adding our database connection to our model... this is ES6 shorthand for sequelize: sequelize 
-        sequelize,
-        freezeTableName: true,
-        underscored: true,
-        hooks: {
-            beforeCreate: async (userData) => {
-                userData.password = await bcrypt.hash(userData.password, 10)
-                return userData;
-            },
-            beforeUpdate: async (userData) => {
-                userData.password = await bcrypt.hash(userData.password, 10)
-                return userData;
-            }
+}, {
+    hooks: {
+        beforeCreate: async (userData) => {
+            userData.password = await bcrypt.hash(userData.password, 10)
+            return userData;
+        },
+        beforeUpdate: async (userData) => {
+            userData.password = await bcrypt.hash(userData.password, 10)
+            return userData;
         }
-    }
-)
+    },
+    // adding our database connection to our model... this is ES6 shorthand for sequelize: sequelize 
+    sequelize,
+    freezeTableName: true,
+    underscored: true,
+});
 
 module.exports = User;
