@@ -1,5 +1,5 @@
 // module
-const { Post } = require('../models');
+const Post = require('../models/Post');
 
 // variable to hold all the posts
 const postData = [
