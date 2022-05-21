@@ -1,4 +1,4 @@
-const { Comment } = require('../models');
+const Comments = require('../models/Comments');
 
 // variable to hold all the comments
 const commentData = [
@@ -39,6 +39,6 @@ const commentData = [
 ]
 
 // function to seed the comments table with the data in the commentData array
-const seedComments = () => Comment.bulkCreate(commentData);
+const seedComments = () => Comments.bulkCreate(commentData);
 
 module.exports = seedComments;
