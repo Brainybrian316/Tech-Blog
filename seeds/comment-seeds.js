@@ -1,9 +1,14 @@
 const { Comment } = require('../models');
 
+// variable to hold all the comments
 const commentData = [
+    // expects key value pairs (user_id, post_id, content)
     {
+        //  user_id = the id of the user who created the comment
         user_id: 1,
+        // post_id = the id of the post that the comment is associated with
         post_id: 2,
+        // content = the actual comment itself
         content: 'This is awesome! I love it!'
     },
     {
@@ -33,6 +38,7 @@ const commentData = [
     }
 ]
 
+// function to seed the comments table with the data in the commentData array
 const seedComments = () => Comment.bulkCreate(commentData);
 
 module.exports = seedComments;

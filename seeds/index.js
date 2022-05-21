@@ -1,9 +1,10 @@
+// modules
 const seedPosts = require('./post-seeds');
 const seedUsers = require('./user-seeds');
 const seedComments = require('./comment-seeds');
-
 const sequelize = require('../config/connection');
 
+// create a variable to hold all the seeds
 const seedAll = async () => {
     await sequelize.sync({ force: true });
     console.log('\n----- DATABASE SYNCED -----\n');
@@ -22,4 +23,5 @@ const seedAll = async () => {
     process.exit(0);
 };
 
+// run the seedAll function
 seedAll();

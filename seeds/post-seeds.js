@@ -1,9 +1,15 @@
+// module
 const { Post } = require('../models');
 
+// variable to hold all the posts
 const postData = [
+    // expects key value pairs (user_id, title, content)
     {
+        // title = the title of the post
         title: 'The tech industry is booming',
+        // post_content = the actual content of the post
         post_content: 'did you know that the tech industry is booming? There are more than 1.5 million jobs in the tech industry and the average salary for a tech job is $100,000. This is a great news for the tech industry. I am sure that the tech industry will continue to grow and prosper.',
+        //  user_id = the id of the user who created the post
         user_id: 1
     },
     {
@@ -18,6 +24,7 @@ const postData = [
     }
 ]
 
+// variable to hold all the comments for each post in the postData array
 const seedPosts = () => Post.bulkCreate(postData);
 
 module.exports = seedPosts;
