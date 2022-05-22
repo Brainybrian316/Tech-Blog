@@ -1,16 +1,10 @@
-{{!-- title --}}
-<h1>Welcome {{user.username}}</h1>
-<p>Below you will find your post contributions as well as the ability manage your post or add post.</p>
-
-{{!-- user post --}}
-<h4>My Post:</h4>
-
-    {{#if post.length}}
-    {{#each post as  |post| }}
-    {{> post-info post}}
+{{#if posts.length}}
+<section>
+  <h2>Your Posts</h2>
+    {{#each posts as |post|}}
+      {{> post-info post}}
     {{/each}}
-    {{else}}
-    <p>You have no post.</p>
-    {{/if}}
 
-    
+</section>
+{{/if}}
+

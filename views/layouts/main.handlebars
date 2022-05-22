@@ -9,10 +9,10 @@
     </head>
 
     <header>
-        <h1> <a href="/">Tech Blog</a></h1>
-            <nav>
+            <nav> 
+               <a href="/">Home</a>
+             <a href="/dashboard">Dashboard</a>
                 {{#if loggedIn}}
-                <a href="/dashboard">Dashboard</a>
                 <button id="logout" class="btn-no-style">Logout</button>
                 {{else}}
                 <a href="/login">Login</a>

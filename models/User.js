@@ -4,7 +4,12 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 
 //  the class that grabs the sequelize model methods
-class User extends Model {}
+class User extends Model {
+    //  the method that will hash the password
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
+    }
+}
 
 // the sequelize model method that we are using to create the table for the user
 User.init({
