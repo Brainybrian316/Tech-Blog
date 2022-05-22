@@ -1,10 +1,14 @@
-{{#if posts.length}}
-<section>
-  <h2>Your Posts</h2>
-    {{#each posts as |post|}}
-      {{> post-info post}}
-    {{/each}}
 
-</section>
+<h1>Welcome to your profile page</h1>
+<a href="/dashboard/create">Create Post</a>
+
+<h2>Your Post:</h2>
+{{#if post.length}}
+{{#each post as |post| }}
+{{> post-info post }}
+{{/each}}
+{{else}}
+<h6>
+    No posts yet.
+</h6>
 {{/if}}
-
