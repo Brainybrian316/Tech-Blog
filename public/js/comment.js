@@ -20,8 +20,8 @@ async function commentFormHandler(event) {
                 document.location.reload();
             } else {
                 alert(response.statusText);
-            }
-        }
-    }
+            };
+        };
+    };
 
     document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);
