@@ -1,6 +1,6 @@
 //  Modules are imported/exported
 const express = require('express');
-// const routes = require('./controllers');
+const routes = require('./controllers');
 // const path = require('path');
 // const session = require(express-session);
 // const exphbs = require('express-handlebars');
@@ -41,8 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 // // set handlebars as the default engine
 // app.set('view engine', 'handlebars');
 // set up routes and controllers
-// app.use(routes);
-app.use(require('./controllers'));
+app.use(routes);
+
 
 // turn on  connection to db and server
 sequelize.sync({ force: false }).then(() => {
