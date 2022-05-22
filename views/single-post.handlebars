@@ -1,0 +1,25 @@
+{{!-- single post for logged in user --}}
+{{> post-info post }}
+
+{{!-- if logged in can comment --}}
+{{#if loggedIn }}
+<div class="card">
+    <h3>Add Comment</h3>
+    <form class="create-comment-form">
+        <div>
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment" placeholder="comment" required></textarea>
+        </div>
+        <div>
+            <button type="submit">Add Comment</button>
+        </div>
+    </form>
+</div>
+{{/if}} 
+
+{{> comments post.comments }}
+
+{{!-- if logged --}}
+{{#if loggedIn }}
+<script src="/js/comment.js"></script>
+{{/if}}
