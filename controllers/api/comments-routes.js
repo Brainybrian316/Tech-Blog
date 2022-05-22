@@ -1,11 +1,11 @@
 // modules 
 const router = require('express').Router();
 const { User, Comments } = require('../../models');
-// const withAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
 
 //! CREATE
 // POST a new comment
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     //  access the Comments model and create a new comment
     Comments.create({
         content: req.body.content,
@@ -76,7 +76,7 @@ router.get('/:id', (req, res) => {
 
 //! UPDATE
 // PUT update a comment
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     // access the Comments model and update a comment by id
     Comments.update({
         content: req.body.content
@@ -102,7 +102,7 @@ router.put('/:id', (req, res) => {
 
 //! DELETE
 // DELETE delete a comment by id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     //  access the Comments model and delete a comment by id
     Comments.destroy({
         where: {

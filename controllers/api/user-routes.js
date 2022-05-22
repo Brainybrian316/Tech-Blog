@@ -1,8 +1,6 @@
 // Modules
 const router = require('express').Router()
 const { User, Post, Comments } = require('../../models');
-//! middleware to set up later
-// const withAuth = require('../../utils/auth');
 
 //! CREATE
 //  POST create a new user
@@ -16,54 +14,57 @@ router.post('/', (req, res) => {
     // send the response
     .then(dbUserData => 
         // *set up session later
-        // req.session.save(() => {
-        //     req.session.user_id = dbUserData.id;
-        //     req.session.username = dbUserData.username;
-        //     req.session.loggedIn = true;
-            res.json(dbUserData))
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
+        req.session.save(() => {
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
+            res.json(dbUserData)
+        })
+        .catch(err => {
+        console.log(err);
+         res.status(500).json(err);
+        })
+    );
+});
+       
+    // ability to login
+    router.post('/login', (req, res) => {
+        User.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(400).json({ message: 'No user with that email address!' });
+                return;
+            }
+            // check if the password is correct
+            const validPassword = dbUserData.checkPassword(req.body.password);
+            if (!validPassword) {
+                res.status.status(400).json({ message: 'Incorrect password!' });
+                return;
+            }
+            // set up session
+            req.session.save(() => {
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
+            res.json({ user: dbUserData, message: 'You are now logged in!' });
         });
-    
-    // //* ability to login (set up now for use later)
-    // router.post('/login', (req, res) => {
-    //     User.findOne({
-    //         where: {
-    //             email: req.body.email
-    //         }
-    //     })
-    //     .then(dbUserData => {
-    //         if (!dbUserData) {
-    //             res.status(400).json({ message: 'No user with that email address!' });
-    //             return;
-    //         }
-    //         // check if the password is correct
-    //         const validPassword = dbUserData.checkPassword(req.body.password);
-    //         if (!validPassword) {
-    //             res.status.status(400).json({ message: 'Incorrect password!' });
-    //             return;
-    //         }
-    //         // *set up session later
-    //         // req.session.save(() => {
-    //         // req.session.user_id = dbUserData.id;
-    //         // req.session.username = dbUserData.username;
-    //         // req.session.loggedIn = true;
-    //         res.json({ user: dbUserData, message: 'You are now logged in!' });
-    //     });
-    // });
+    });
+});
 
-    // //* ability to logout (set up now for use later)
-    // router.post('/logout', (req, res) => {
-    //     if (req.session.loggedIn) {
-    //         req.session.destroy(() => {
-    //             res.status(204).end();
-    //         });
-    //     } else {
-    //         res.status(404).end();
-    //     }
-    // });
+    // ability to logout 
+    router.post('/logout', (req, res) => {
+        if (req.session.loggedIn) {
+            req.session.destroy(() => {
+                res.status(204).end();
+            });
+        } else {
+            res.status(404).end();
+        }
+    });
 
 //! READ
 // GET all users

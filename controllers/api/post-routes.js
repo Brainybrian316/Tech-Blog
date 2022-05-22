@@ -1,11 +1,11 @@
 // Modules
 const router = require('express').Router();
 const { User, Post, Comments } = require('../../models');
-// const withAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
 
 //! CREATE
 //  POST create a new post for a user
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     //  access the Post model and create a new post
     Post.create({
         title: req.body.title,
@@ -94,7 +94,7 @@ router.get('/:id', (req, res) => {
 
 //! UPDATE
 // PUT update a post by id
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     //  access the Post model and update a post
     Post.update({
         title: req.body.title,
@@ -121,7 +121,7 @@ router.put('/:id', (req, res) => {
 
 //! DELETE
 // delete a post by id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     // access the Post model and delete a post by id
     Post.destroy({
         where: {
