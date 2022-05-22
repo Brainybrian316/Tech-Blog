@@ -47,16 +47,8 @@ User.init({
         // the password cannot be empty
         allowNull: false,
         // we want to validate the password to match our requirements
-        validate: 
-            // // \d is short hand for digit...this validates that the password has Minimum eight characters, at least one letter, one number and one special character:
-            // is: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
-        {
-             // checks the password it must be at least 8 characters long have a number and a letter and a special character
-            validatePassword: function(password) {
-                if(!(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password))) {
-                    throw new Error('Password must be at least 8 characters, contain at least 1 letter, 1 number, and 1 special character');
-                }
-            }
+        validate: {
+            len: [8]
         }
     },
 }, {

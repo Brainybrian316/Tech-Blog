@@ -13,12 +13,11 @@ router.post('/', (req, res) => {
     })
     // send the response
     .then(dbUserData => 
-        // *set up session later
         req.session.save(() => {
-            req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
-            req.session.loggedIn = true;
-            res.json(dbUserData)
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+        res.json(dbUserData)
         })
         .catch(err => {
         console.log(err);
