@@ -4,42 +4,13 @@
 
 {{!-- user post --}}
 <h4>My Post:</h4>
-<ul>
-    {{#each user.posts}}
-    <li>
-        <a href="/post/{{this.id}}">{{this.title}}</a>
-    </li>
-    {{/each}}
-</ul>
-    
-    {{!-- add post --}}
-    <h4>Add Post:</h4>
-    <form action="/post/add" method="POST">
-        <div>
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" placeholder="title" required />
-        </div>
-        <div>
-            <label for="content">Content:</label>
-            <textarea id="content" name="content" placeholder="content" required></textarea>
-        </div>
-        <button type="submit">Add Post</button>
-    </form>
 
-{{!-- manage already created post --}}
-<h4>Manage Post:</h4>
-<ul>
-    {{#each user.posts}}
-    <li>
-        <a href="/post/{{this.id}}">{{this.title}}</a>
-        <a href="/post/{{this.id}}/edit">Edit</a>
-        <a href="/post/{{this.id}}/delete">Delete</a>
-    </li>
+    {{#if post.length}}
+    {{#each post as  |post| }}
+    {{> post-info post}}
     {{/each}}
-</ul>
+    {{else}}
+    <p>You have no post.</p>
+    {{/if}}
+
     
-    {{!-- logout --}}   
-    <h4>Logout:</h4>
-    <form action="/logout" method="POST">
-        <button type="submit">Logout</button>
-    </form>
