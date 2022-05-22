@@ -3,7 +3,7 @@ const User  = require('../models/User');
 
 // variable to hold all the users
 const userData = [
-    // expects key value pairs (username, password, email, first_name, last_name)
+    // expects key value pairs (username, password, email)
     {
         // username = the username of the user they create in the sign up form
         username: 'john_doe',

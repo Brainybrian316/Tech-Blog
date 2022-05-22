@@ -1,5 +1,6 @@
 // Modules
 const router = require('express').Router()
+const res = require('express/lib/response');
 const { User, Post, Comments } = require('../../models');
 //! middleware to set up later
 // const withAuth = require('../../utils/auth');
@@ -72,8 +73,6 @@ router.get('/', (req, res) => {
     User.findAll({
         // exclude the password from the response
         attributes: {  exclude: ['password'] },
-        // order the users by created_at (newest first)
-        order: [['created_at', 'DESC']],
         // include the posts from the user
         include: [{
             model: Post,
@@ -135,7 +134,52 @@ router.get('/', (req, res) => {
     });
 
 //! UPDATE
+//  PUT update a user
+router.put('/:id', (req, res) => {
+    // access the User model and update a user
+    User.update(req.body, {
+        individualHooks: true,
+        where: {
+            id: req.params.id
+        }
+    })
+    // send the response
+    .then(dbUserData => {
+        if (!dbUserData[0]) {
+            res.status(404).json({ message: 'No user found with this id' });
+            return;
+        }
+        res.json(dbUserData);
+    })
+    // catch any errors
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
 
 //! DELETE
+// DELETE delete a user by id
+router.delete('/:id', (req, res) => {
+    User.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    // send the response
+    .then(dbUserData => {
+        if (!dbUserData) {
+            res.status(404).json({ message: 'No user found with this id' });
+            return;
+        }
+        res.json(dbUserData);
+    })
+    // catch any errors
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 
 module.exports = router;
