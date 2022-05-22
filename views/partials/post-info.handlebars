@@ -1,12 +1,17 @@
-<article class="post">
-        
- <div class="card-content">
-    <h1>{{title}}</h1> 
-    <p>{{post_content}}</p>
-        <p>
-          By  {{user.username}} on {{format_date created_at}}
-            | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
-            </div>
-        </p>
+{{!-- card for post --}}
+<div class="card">
+  {{!-- title or header of carder --}}
+  <div class="card-header">
+    <h3>{{title}}</h3>
+    {{!-- card content --}}
+    <div class="card-body">
+      {{post_content}}
+      {{!-- card footer --}}
+      <div class="card-footer">
+        {{user.username}} |
+        {{format_date created_at}} |
+        <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+      </div>
     </div>
-</article>
+  </div>
+</div>
