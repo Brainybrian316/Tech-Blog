@@ -5,6 +5,24 @@ const { User, Comments } = require('../../models');
 // const withAuth = require('../../utils/auth');
 
 //! CREATE
+// POST a new comment
+router.post('/', (req, res) => {
+    //  access the Comments model and create a new comment
+    Comments.create({
+        content: req.body.content,
+        user_id: req.body.user_id,
+        post_id: req.body.post_id
+    })
+    // send the response
+    .then(dbCommentData => res.json(dbCommentData))
+    // catch any errors
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+//! READ
 // GET all user comments
 router.get('/', (req, res) => {
     // access the Comments model and find all comments
@@ -50,24 +68,6 @@ router.get('/:id', (req, res) => {
         }
         res.json(dbCommentData);
     })
-    // catch any errors
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
-
-//! READ
-// POST a new comment
-router.post('/', (req, res) => {
-    //  access the Comments model and create a new comment
-    Comments.create({
-        content: req.body.content,
-        user_id: req.body.user_id,
-        post_id: req.body.post_id
-    })
-    // send the response
-    .then(dbCommentData => res.json(dbCommentData))
     // catch any errors
     .catch(err => {
         console.log(err);

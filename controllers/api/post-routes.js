@@ -5,6 +5,8 @@ const sequelize = require('../../config/connection');
 // const withAuth = require('../../utils/auth');
 
 //! CREATE
+
+//! READ
 // GET all user posts
 router.get('/', (req, res) => {
     // access the Post model and find all posts
@@ -74,11 +76,6 @@ router.get('/:id', (req, res) => {
         res.status(500).json(err);
     })
 });
-
-
-
-
-//! READ
 
 //! UPDATE
 
