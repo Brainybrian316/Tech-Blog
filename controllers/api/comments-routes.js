@@ -1,6 +1,5 @@
 // modules 
 const router = require('express').Router();
-const express = require('express');
 const { User, Comments } = require('../../models');
 // const withAuth = require('../../utils/auth');
 

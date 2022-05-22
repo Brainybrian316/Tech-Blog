@@ -1,6 +1,5 @@
 // Modules
 const router = require('express').Router()
-const res = require('express/lib/response');
 const { User, Post, Comments } = require('../../models');
 //! middleware to set up later
 // const withAuth = require('../../utils/auth');
