@@ -4,6 +4,7 @@ const { Post, User, Comments } = require('../models');
 const withAuth = require('../utils/auth');
 
 
+
 // GET /api/dashboard - get all posts for logged in user
 router.get('/', withAuth, (req, res) => {
     Post.findAll({
