@@ -1,10 +1,30 @@
 
-{{!-- ability to edit or delete a post in a card format --}}
-<div class="card">
-    <h3>{{post.title}}</h3>
-    <p>{{post.content}}</p>
-    <button type="button" class="edit-post-button">Edit</button>
-    <button type="button" class="delete-post-button">Delete</button>
+{{!-- article to hold ability to edit, delete, comment post --}}
+<article>
+    {{!-- link to go back to dashboard --}}
+    <a href="/dashboard">Back to Dashboard</a>
+    {{!-- edit post --}}
+    <h2 class="title mt-5">Edit Post</h2>
+    <form class="edit-post-form">
+        <div></div>
+        <label for="post-title">Post Title:</label>
+        <input type="text" id="post-title" class="input" name="post-title" value="{{post.title}}" required />
+        </div>
+        <div>
+            <label for="post-content">Post Content:</label>
+            <input class="textarea" name="post-content" type="text" value="{{post.post_content}}" required />
+        </div>
+        Created by {{user.username}} on: {{format_date post.created_at}}
+        |
+        <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Update Post</button>
+        <button type="button" class="btn btn-danger mt-3">Delete Post</button>
+    </form>
+</article>
+
+{{> comments post.content }}
 
 <script src="/js/edit-post.js"></script>
 <script src="/js/delete-post.js"></script>
+<script src="/js/comment.js"></script>
