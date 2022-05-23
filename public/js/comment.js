@@ -1,7 +1,7 @@
 async function commentFormHandler(event) {
     event.preventDefault();
 
-    const content = document.querySelector('textarea[name="comment-content"]').value;
+    const content = document.querySelector('textarea[name="comment-body"]').value.trim()
     const post_id = window.location.toString().split('/')
     [window.location.toString().split('/').length - 1];
 
@@ -23,5 +23,6 @@ async function commentFormHandler(event) {
             };
         };
     };
+
 
     document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);

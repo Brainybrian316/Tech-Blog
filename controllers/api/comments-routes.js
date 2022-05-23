@@ -7,10 +7,11 @@ const withAuth = require('../../utils/auth');
 // POST a new comment
 router.post('/', withAuth, (req, res) => {
     //  access the Comments model and create a new comment
+    if (req.session) {
     Comments.create({
         content: req.body.content,
-        user_id: req.body.user_id,
-        post_id: req.body.post_id
+        post_id: req.body.post_id,
+        user_id: req.session.user_id
     })
     // send the response
     .then(dbCommentData => res.json(dbCommentData))
@@ -19,6 +20,7 @@ router.post('/', withAuth, (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
+    }
 });
 
 //! READ

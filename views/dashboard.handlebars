@@ -5,9 +5,12 @@
     <a href="/dashboard/create" class="btn btn-primary">Create Post</a>
     <h3 class="mt-4">Your Post:</h3>
 {{!-- display post as cards --}}
-{{#if post.length}}
-{{#each post as |post| }}
+{{#if posts.length}}
+
+{{#each posts as |post| }}
 {{> post-info post }}
+<a href="/dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">edit post</button></a>
+
 {{/each}}
 {{else}}
 <h6>
