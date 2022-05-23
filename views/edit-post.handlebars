@@ -14,13 +14,13 @@
             <h6>Title of your post:</h6>
             <input class="input" type="text" id="post-title" name="post-title" value="{{post.title}}" required />
             <h6 class="mt-3">Blog post content:</h6>
-            <textarea  class="textarea" id="post-content" name="post-content" value="{{post.post_content}}" /></textarea>
+            <textarea class="textarea" id="post-content" name="post-content" />{{post.post_content}}</textarea>
         Created on: {{format_date post.created_at}}
         </div>
         <button type="submit" class="btn btn-primary mt-3">Update Post</button>
-        <button type="button" class="btn btn-danger mt-3">Delete Post</button>
+        <button type="button" class="btn btn-danger mt-3 delete-post-btn">Delete Post</button>
         <div class="mx-3 mt-3 mb-3">
-            <h5 class="text-decoration-underline text-muted">Comments</h5>
+            <h5 class="text-decoration-underline text-muted ">Comments</h5>
         {{> comments post.comments }}
         </div>
     </form>
@@ -28,8 +28,5 @@
     </div>
 </section>
 
-
-
 <script src="/js/edit-post.js"></script>
 <script src="/js/delete-post.js"></script>
-<script src="/js/comment.js"></script>
