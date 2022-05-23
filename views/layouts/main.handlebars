@@ -14,9 +14,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Tech Blog</a>
             <a href="/" class="mx-3">Home</a>
-
-             <a href="/dashboard" class="mx-3">Dashboard</a>
+           
                 {{#if loggedIn}}
+                <a href="/dashboard" class="mx-3">Dashboard</a>
                 <button id="logout" class="btn-no-style mx-3">Logout</button>
                 {{else}}
                 <a href="/login" class="mx-3">Login</a>
