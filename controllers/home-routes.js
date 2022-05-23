@@ -1,24 +1,25 @@
 const router = require('express').Router();
 const { Post, User, Comments } = require('../models');
+const sequelize = require('../config/connection');
 
 
 // GET signup page
 router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
+      res.redirect('/');
+      return;
     }
     res.render('signup');
-});
+  });
 
 // GET login page
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
+      res.redirect('/');
+      return;
     }
     res.render('login');
-});
+  });
 
 // GET /api/home - get all posts for logged in user
 router.get('/', (req, res) => {
@@ -42,7 +43,8 @@ router.get('/', (req, res) => {
     .then(dbPostData => {
         //  serialize data for front-end
         const posts = dbPostData.map(post => post.get({ plain: true }));
-        res.render('homepage', { posts, loggedIn: req.session.loggedIn });
+        res.render('homepage', { posts, loggedIn: req.session.loggedIn
+          });
     })
     .catch(err => {
         console.log(err);

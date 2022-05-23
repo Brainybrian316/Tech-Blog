@@ -1,6 +1,7 @@
 // Modules
 const router = require('express').Router()
 const { User, Post, Comments } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 //! CREATE
 //  POST create a new user
@@ -12,17 +13,18 @@ router.post('/', (req, res) => {
         password: req.body.password
     })
     // send the response
-    .then(dbUserData => 
+    .then(dbUserData => {
         req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
-        res.json(dbUserData)
+        res.json(dbUserData);
         })
+    })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
-        }));
+        });
 });
        
     // ability to login
