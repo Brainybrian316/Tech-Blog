@@ -53,7 +53,9 @@ User.init({
         allowNull: false,
         // we want to validate the password to match our requirements
         validate: {
-            len: [8]
+            len: [8],
+            // checks if password has 1 letter 1 number and 1 special character
+            is: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
         }
     },
 }, {
