@@ -1,8 +1,11 @@
 
+
 <div class="comments">
+  {{!-- take each post comment and put it there (where you call it) --}}
   {{#each this}}
   <section class="comment">
     <div class="meta">
+      {{!-- the properties of the comment object  --}}
       {{user.username}} on {{format_date created_at}}
     </div>
     <div class="text">
