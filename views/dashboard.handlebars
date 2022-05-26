@@ -4,11 +4,13 @@
     {{!-- button to create post using a href --}}
     <a href="/dashboard/create" class="btn btn-primary">Create Post</a>
     <h3 class="mt-4">Your Post:</h3>
-{{!-- display post as cards --}}
+{{!-- this shows all the post if there are more then one --}}
 {{#if posts.length}}
 
 {{#each posts as |post| }}
+{{!-- partial for the post-info that will place all the content in the partial here --}}
 {{> post-info post }}
+{{!-- we include post.id to edit the post based on its id --}}
 <a href="/dashboard/edit/{{post.id}}"><button class="btn btn-primary mt-2 mb-2">Edit Post</button></a>
 
 {{/each}}

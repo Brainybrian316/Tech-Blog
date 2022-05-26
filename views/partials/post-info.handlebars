@@ -4,12 +4,15 @@
     <div class="card mt-3 mb-3 ">
       {{!-- title or header of carder --}}
       <div class="card-header">
+        {{!-- the object for the post named title --}}
         <h3>{{title}}</h3>
         {{!-- card content --}}
         <div class="card-body">
+          {{!-- the object of the post named post_content --}}
           {{post_content}}
           {{!-- card footer --}}
           <div class="card-footer">
+            {{!-- the username of the user --}}
             {{user.username}} |
             {{format_date created_at}} |
             <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>

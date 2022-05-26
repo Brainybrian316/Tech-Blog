@@ -14,14 +14,16 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Tech Blog</a>
             <a href="/" class="mx-3">Home</a>
-           
+           {{!-- if the user is logged in they will see these --}}
                 {{#if loggedIn}}
                 <a href="/dashboard" class="mx-3">Dashboard</a>
                 <button id="logout" class="btn-no-style mx-3">Logout</button>
+                {{!-- if the user is not logged in these will show --}}
                 {{else}}
                 <a href="/login" class="mx-3">Login</a>
                 <a href="/signup" class="mx-3">Signup</a>
-                {{/if}}
+                {{!-- this is the end of the IF statement --}}
+                {{/if}} 
         </div>
         </nav>
     </header>
@@ -33,7 +35,6 @@
             </main>
             
             <footer class="footer row">
-                {{!-- display in footer link to homepage and dashboard centered --}}
                 <div class="col-12 text-center">
                     <a href="/" class="text-muted">Home</a>
                     |
@@ -42,6 +43,7 @@
                     {{!-- copyright below --}}
                     <span class="text-muted">&copy; <strong>Tech Blog</strong></span>
             </footer>
+            {{!-- if the user is logged in the logout script will be useable --}}
         {{#if loggedIn}}
         <script src="/js/logout.js"></script>
         {{/if}}
