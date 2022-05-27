@@ -19,7 +19,7 @@
 ## Demo of Project 
 
 ### 🏠 [Homepage](https://github.com/Brainybrian316/Tech-Blog)
-### ✨ [Live Demo]()
+### ✨ [Live Developer Demo]()
 ### 📲 [Full Site](https://brainybrian316-blog-site.herokuapp.com/)
 
 ***
