@@ -18,9 +18,9 @@
 ***
 ## Demo of Project 
 
-### 🏠 [Homepage](https://github.com/Brainybrian316/Tech-Blog)
+### 🏠 [Homepage](https://brainybrian316-blog-site.herokuapp.com/)
 ### ✨ [Live Developer Demo]()
-### 📲 [Full Site](https://brainybrian316-blog-site.herokuapp.com/)
+
 
 ***
 ## Install
